@@ -1,5 +1,7 @@
 # Contentful Gatsby Starter Blog
 
+Using the contentful-starter as a template for a blog
+
 Create a [Gatsby](http://gatsbyjs.com/) blog powered by [Contentful](https://www.contentful.com).
 
 ![An article page of the starter blog](./screenshot.png "An article page of the starter blog")
