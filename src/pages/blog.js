@@ -34,7 +34,6 @@ export const pageQuery = graphql`
         heroImage {
           gatsbyImage(
             layout: FULL_WIDTH
-            placeholder: BLURRED
             width: 424
             height: 212
           )
