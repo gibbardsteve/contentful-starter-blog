@@ -3,7 +3,7 @@ import { Link, graphql } from 'gatsby'
 import get from 'lodash/get'
 import { renderRichText } from 'gatsby-source-contentful/rich-text'
 import { documentToPlainTextString } from '@contentful/rich-text-plain-text-renderer'
-import { BLOCKS } from '@contentful/rich-text-types'
+import { BLOCKS, INLINES } from '@contentful/rich-text-types'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 import readingTime from 'reading-time'
 
@@ -49,6 +49,31 @@ class BlogPostTemplate extends React.Component {
           //return <img src={url} alt={title} />
 
           return(<GatsbyImage image={gImageData} alt={node.data.target.description} />)
+        },
+        [INLINES.HYPERLINK]: node => {
+          // Only process youtube links
+          if (node.data.uri.includes("youtube.com")) {
+            // Extract videoId from the URL
+            const match = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/.exec(
+              node.data.uri
+            )
+            const videoId =
+              match && match[7].length === 11 ? match[7] : null
+            return (
+              videoId && (
+                <section className="video-container">
+                  <iframe
+                    className="video"
+                    title={`https://youtube.com/embed/${videoId}`}
+                    src={`https://youtube.com/embed/${videoId}`}
+                    allow="accelerometer; encrypted-media; gyroscope; picture-in-picture"
+                    frameBorder="0"
+                    allowFullScreen
+                  />
+                </section>
+              )
+            )
+          }
         },
       },
     };
