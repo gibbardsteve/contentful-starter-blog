@@ -18,7 +18,7 @@ class RootIndex extends React.Component {
           title={author.name}
           content={author.shortBio}
         />
-        <ArticlePreview posts={posts} />
+        <ArticlePreview posts={posts} type="blog"/>
       </Layout>
     )
   }

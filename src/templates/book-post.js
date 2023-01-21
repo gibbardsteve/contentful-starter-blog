@@ -13,9 +13,9 @@ import Hero from '../components/hero'
 import Tags from '../components/tags'
 import * as styles from './blog-post.module.css'
 
-class BlogPostTemplate extends React.Component {
+class BookPostTemplate extends React.Component {
   render() {
-    const post = get(this.props, 'data.contentfulBlogPost')
+    const post = get(this.props, 'data.contentfulBookPost')
     const previous = get(this.props, 'data.previous')
     const next = get(this.props, 'data.next')
     const plainTextDescription = documentToPlainTextString(
@@ -37,16 +37,6 @@ class BlogPostTemplate extends React.Component {
           
           const gImageData = getImage(node.data.target)
           console.log(gImageData)
-
-          // This is an alternative work around for getting images in richText format
-          // to display
-          //const imageID = node.data.target.sys.id;
-          //const {
-          //  file: {url}, 
-          //  title
-          //} = post.body.references.find(({contentful_id: id}) => id === imageID);
-
-          //return <img src={url} alt={title} />
 
           return(<GatsbyImage image={gImageData} alt={node.data.target.description} />)
         },
@@ -107,14 +97,14 @@ class BlogPostTemplate extends React.Component {
                 <ul className={styles.articleNavigation}>
                   {previous && (
                     <li>
-                      <Link to={`/blog/${previous.slug}`} rel="prev">
+                      <Link to={`/books/${previous.slug}`} rel="prev">
                         ← {previous.title}
                       </Link>
                     </li>
                   )}
                   {next && (
                     <li>
-                      <Link to={`/blog/${next.slug}`} rel="next">
+                      <Link to={`/books/${next.slug}`} rel="next">
                         {next.title} →
                       </Link>
                     </li>
@@ -129,15 +119,15 @@ class BlogPostTemplate extends React.Component {
   }
 }
 
-export default BlogPostTemplate
+export default BookPostTemplate
 
 export const pageQuery = graphql`
-  query BlogPostBySlug(
+  query BookPostBySlug(
     $slug: String!
     $previousPostSlug: String
     $nextPostSlug: String
   ) {
-    contentfulBlogPost(slug: { eq: $slug }) {
+    contentfulBookPost(slug: { eq: $slug }) {
       slug
       title
       author {
@@ -171,11 +161,11 @@ export const pageQuery = graphql`
         raw
       }
     }
-    previous: contentfulBlogPost(slug: { eq: $previousPostSlug }) {
+    previous: contentfulBookPost(slug: { eq: $previousPostSlug }) {
       slug
       title
     }
-    next: contentfulBlogPost(slug: { eq: $nextPostSlug }) {
+    next: contentfulBookPost(slug: { eq: $nextPostSlug }) {
       slug
       title
     }
@@ -183,12 +173,12 @@ export const pageQuery = graphql`
 `
 /*
 export const pageQuery = graphql`
-  query BlogPostBySlug(
+  query BookPostBySlug(
     $slug: String!
     $previousPostSlug: String
     $nextPostSlug: String
   ) {
-    contentfulBlogPost(slug: { eq: $slug }) {
+    contentfulBookPost(slug: { eq: $slug }) {
       slug
       title
       author {
@@ -219,11 +209,11 @@ export const pageQuery = graphql`
         raw
       }
     }
-    previous: contentfulBlogPost(slug: { eq: $previousPostSlug }) {
+    previous: contentfulBookPost(slug: { eq: $previousPostSlug }) {
       slug
       title
     }
-    next: contentfulBlogPost(slug: { eq: $nextPostSlug }) {
+    next: contentfulBookPost(slug: { eq: $nextPostSlug }) {
       slug
       title
     }

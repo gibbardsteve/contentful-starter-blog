@@ -7,25 +7,25 @@ import Layout from '../components/layout'
 import Hero from '../components/hero'
 import ArticlePreview from '../components/article-preview'
 
-class BlogIndex extends React.Component {
+class BookIndex extends React.Component {
   render() {
-    const posts = get(this, 'props.data.allContentfulBlogPost.nodes')
+    const posts = get(this, 'props.data.allContentfulBookPost.nodes')
 
     return (
       <Layout location={this.props.location}>
-        <Seo title="Blog" />
-        <Hero title="Blog" />
-        <ArticlePreview posts={posts} type="blog" />
+        <Seo title="Books" />
+        <Hero title="Books" />
+        <ArticlePreview posts={posts} type="books"/>
       </Layout>
     )
   }
 }
 
-export default BlogIndex
+export default BookIndex
 
 export const pageQuery = graphql`
-  query BlogIndexQuery {
-    allContentfulBlogPost(sort: { fields: [publishDate], order: DESC }) {
+  query BookIndexQuery {
+    allContentfulBookPost(sort: { fields: [publishDate], order: DESC }) {
       nodes {
         title
         slug
