@@ -3,10 +3,9 @@ import { Link, graphql } from 'gatsby'
 import get from 'lodash/get'
 import { renderRichText } from 'gatsby-source-contentful/rich-text'
 import { documentToPlainTextString } from '@contentful/rich-text-plain-text-renderer'
-import { BLOCKS, INLINES, MARKS } from '@contentful/rich-text-types'
+import { BLOCKS, INLINES} from '@contentful/rich-text-types'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 import readingTime from 'reading-time'
-import Prism from 'prismjs'
 
 import Seo from '../components/seo'
 import Layout from '../components/layout'
@@ -15,10 +14,6 @@ import Tags from '../components/tags'
 import * as styles from './blog-post.module.css'
 
 class BlogPostTemplate extends React.Component {
-  componentDidMount(){
-    // call the highlightAll() function to style our code blocks
-    Prism.highlightAll();
-  }
   
   render() {
     const post = get(this.props, 'data.contentfulBlogPost')
@@ -57,7 +52,6 @@ class BlogPostTemplate extends React.Component {
           return(<GatsbyImage image={gImageData} alt={node.data.target.description} />)
         },
         [INLINES.HYPERLINK]: node => {
-          console.log("Did this print?!?")
           // Only process youtube links
           if (node.data.uri.includes("youtube.com")) {
             // Extract videoId from the URL
@@ -81,17 +75,6 @@ class BlogPostTemplate extends React.Component {
               )
             )
           }
-        }
-      },
-      renderMark: {
-        [MARKS.CODE]: text => {
-          return (
-              <pre>
-                <code className={`language-javascript line-numbers`}>
-                    {text}
-                </code>
-              </pre>
-          );        
         }
       }
     };
