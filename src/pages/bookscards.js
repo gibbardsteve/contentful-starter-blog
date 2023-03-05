@@ -9,7 +9,9 @@ import BookCard from '../components/book-card'
 const BookscardsIndex = (props) => {
   const posts = props.data.allContentfulBookPost.nodes
 
-  console.log("Printing posts"+posts)
+  console.log("Printing posts "+posts[0].title)
+  console.log("Printing posts "+posts[1].title)
+  console.log("Printing posts "+posts[2].title)
 
   return(
     <Layout location={props.location}>

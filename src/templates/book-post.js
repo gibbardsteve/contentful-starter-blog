@@ -143,18 +143,6 @@ export const pageQuery = graphql`
       }
       body {
         raw
-        references {
-          ... on ContentfulAsset {
-            contentful_id
-            title
-            description
-            gatsbyImageData(width: 1000)
-            file {
-              url
-            }
-            __typename
-          }
-        }
       }
       tags
       description {
@@ -171,52 +159,3 @@ export const pageQuery = graphql`
     }
   }
 `
-/*
-export const pageQuery = graphql`
-  query BookPostBySlug(
-    $slug: String!
-    $previousPostSlug: String
-    $nextPostSlug: String
-  ) {
-    contentfulBookPost(slug: { eq: $slug }) {
-      slug
-      title
-      author {
-        name
-      }
-      publishDate(formatString: "MMMM Do, YYYY")
-      rawDate: publishDate
-      heroImage {
-        gatsbyImage(layout: FULL_WIDTH, width: 1280)
-        resize(height: 630, width: 1200) {
-          src
-        }
-      }
-      body {
-        raw
-        references {
-          ... on ContentfulAsset {
-             contentful_id
-             title
-             file {
-                url
-             }
-          }
-       }
-      }
-      tags
-      description {
-        raw
-      }
-    }
-    previous: contentfulBookPost(slug: { eq: $previousPostSlug }) {
-      slug
-      title
-    }
-    next: contentfulBookPost(slug: { eq: $nextPostSlug }) {
-      slug
-      title
-    }
-  }
-`
-*/
