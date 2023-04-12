@@ -17,7 +17,7 @@ const Navigation = () => (
       </li>
       <li className={styles.navigationItem}>
         <Link to="/bookscards/" activeClassName="active">
-          Books
+          Reading
         </Link>
       </li>
       <li className={styles.navigationItem}>

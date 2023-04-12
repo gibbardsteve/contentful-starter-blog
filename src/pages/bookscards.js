@@ -10,13 +10,15 @@ const BookscardsIndex = (props) => {
   const posts = props.data.allContentfulBookPost.nodes
 
   console.log("Printing posts "+posts[0].title)
+  console.log("Printing posts "+posts[0].rating)
   console.log("Printing posts "+posts[1].title)
+  console.log("Printing posts "+posts[1].heroImage.publicUrl)
   console.log("Printing posts "+posts[2].title)
 
   return(
     <Layout location={props.location}>
-        <Seo title="Books Cards" />
-        <Hero title="Books Cards" />
+        <Seo title="Reading List" />
+        <Hero title="Reading List" />
         <BookCard posts={posts} type="bookscard"/>
     </Layout>
   )
@@ -32,6 +34,10 @@ export const pageQuery = graphql`
         slug
         publishDate(formatString: "MMMM Do, YYYY")
         tags
+        rating
+        bookAuthor
+        characters
+        genre
         heroImage {
           gatsbyImage(
             layout: FULL_WIDTH
@@ -41,6 +47,9 @@ export const pageQuery = graphql`
           publicUrl
         }
         description {
+          raw
+        }
+        body {
           raw
         }
       }

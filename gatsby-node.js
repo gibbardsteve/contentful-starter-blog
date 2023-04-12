@@ -68,19 +68,19 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 
   if (bookPosts.length > 0) {
     bookPosts.forEach((post, index) => {
-      const previousPostSlug = index === 0 ? null : posts[index - 1].slug
-      const nextPostSlug =
-        index === posts.length - 1 ? null : posts[index + 1].slug
+      //const previousPostSlug = index === 0 ? null : posts[index - 1].slug
+      //const nextPostSlug =
+      //  index === posts.length - 1 ? null : posts[index + 1].slug
 
-      createPage({
-        path: `/books/${post.slug}/`,
-        component: bookPost,
-        context: {
-          slug: post.slug,
-          previousPostSlug,
-          nextPostSlug,
-        },
-      })
+      //createPage({
+      //  path: `/books/${post.slug}/`,
+      //  component: bookPost,
+      //  context: {
+      //    slug: post.slug,
+      //    previousPostSlug,
+      //    nextPostSlug,
+      //  },
+      //})
     })
   }
 }
